@@ -18,8 +18,10 @@
  * Define Global Variables
  *
 */
-let sections = document.getElementsByTagName('section')
-let navDiv = document.getElementById('navbar__list')
+//grab all content sections and assign to a variable. Variable type is an array.
+let sections = document.getElementsByTagName("section")
+// navDiv is the div that holds the navigation links
+let navDiv = document.getElementById("navbar__list")
 
 /**
  * End Global Variables
@@ -30,7 +32,7 @@ let navDiv = document.getElementById('navbar__list')
 let myMenu = () => {
   let menuArray = [];
   for(const section of sections){
-    let myButton = `<li class='menu__link'><a href=#${strFix(section.dataset.nav)}>${section.dataset.nav}</a></li>`;
+    let myButton = `<li class="menu__link">${section.dataset.nav}</li>`;
     menuArray.push(myButton)
   }
   return menuArray.join('')
@@ -47,39 +49,18 @@ let isInViewport = (element) => {
     );
 };
 
-// strFix takes a string as input and returns the same string in lowercase and no space.
-let strFix = (string) => {
-  let newStr = string.toLowerCase().replaceAll(' ','')
-  return newStr;
-}
-
 /**
  * End Helper Functions
  * Begin Main Functions
  *
 */
-//renderMenu function adds the nav menu to the DOM
+//renderMenu function adds the nav menu as a child to any parentDiv element on the DOM
 let renderMenu  = (parentDiv) => {
   parentDiv.innerHTML = myMenu();
 }
+
+// build the nav and render to HTML
 renderMenu(navDiv)
-// build the nav
-
-
-// Add class 'active' to section when near top of viewport
-document.addEventListener('scroll',() => {
-  for (let section of sections){
-    if (isInViewport(section)){
-      section.classList.add('active')
-    }
-    else{
-      section.classList.remove('active')
-    }
-  }
-});
-
-// Scroll to anchor ID using scrollTO event
-
 
 /**
  * End Main Functions
@@ -90,5 +71,30 @@ document.addEventListener('scroll',() => {
 // Build menu
 
 // Scroll to section on link click
+let links = document.getElementsByClassName("menu__link")
 
-// Set sections as active
+for(let link of links){
+  link.addEventListener('click',() => {
+//get innertext of  link element
+    let sectionName = link.innerText;
+    for (let section of sections){
+//if sectionName matches section data value, smooth scroll to the section
+      if (sectionName === section.dataset.nav){
+        section.scrollIntoView({behavior: "smooth"})
+      }
+    }
+  })
+};
+
+
+// Add class 'active' to section when near top of viewport
+document.addEventListener("scroll",() => {
+  for (let section of sections){
+    if (isInViewport(section)){
+      section.classList.add("active")
+    }
+    else{
+      section.classList.remove("active")
+    }
+  }
+});
