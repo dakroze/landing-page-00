@@ -54,7 +54,7 @@ let isInViewport = (element) => {
  * Begin Main Functions
  *
 */
-//renderMenu function adds the nav menu as a child to any parentDiv element on the DOM
+//renderMenu function adds the nav menu as a child to parentDiv element on the DOM
 let renderMenu  = (parentDiv) => {
   parentDiv.innerHTML = myMenu();
 }
