@@ -19,6 +19,7 @@ body {
 }
 
 
+
 /* Typeography General*/
 h1 {
     font-family: 'Fira Sans', sans-serif;
@@ -121,10 +122,21 @@ section {
     text-align: left;
 }
 
-@media only screen and (min-width: 35em){
+/* @media only screen and (min-width: 35em){
     .landing__container {
         max-width: 50em;
         padding: 4em;
+    }
+} */
+
+@media only screen and (min-width: 15em) and (max-width: 35em){
+    .navbar__menu .menu__link{
+      text-align: center;
+      font-size: 2vw;
+    }
+
+    section{
+      font-size: 0.5em;
     }
 }
 
